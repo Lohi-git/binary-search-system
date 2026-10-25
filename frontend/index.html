@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Binary Search Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+<header>
+  <h1>Binary search, step by step.</h1>
+  <p>Pick a sorted list and a target. Every comparison throws away half of what’s left, and you can watch the window shrink.</p>
+</header>
+
+<section class="g setup">
+  <label>List size <span style="display:flex;gap:8px;align-items:center"><input id="size" type="range" min="8" max="40" value="16"><output id="sizeo">16</output></span></label>
+  <button id="newl">New list</button>
+  <label class="grow">Or type your own list <input id="mine" placeholder="4, 8, 15, 16, 23, 42"></label>
+  <button id="use">Use my list</button>
+  <label>Target <input id="tgt" type="number"></label>
+  <button id="rand">Pick a target</button>
+  <div class="seg" id="mode" role="group" aria-label="Search mode">
+    <button data-m="any" class="on">Find any match</button><button data-m="first">First match</button><button data-m="last">Last match</button>
+  </div>
+  <p id="err" role="alert"></p>
+</section>
+
+<section class="g">
+  <div id="row" class="row"></div>
+  <p class="hint">Bright ring = live window edge. Faded cards are already ruled out. Amber is the middle being checked.</p>
+  <p id="msg" class="msg" aria-live="polite"></p>
+  <div class="ctl">
+    <button id="reset">Reset</button><button id="back">Back</button><button id="play" class="pri">Play</button><button id="next">Next</button>
+    <label>Speed <input id="spd" type="range" min="1" max="8" value="3"></label>
+  </div>
+  <div class="race">
+    <div class="bar"><span>Binary search</span><div><i id="bb"></i></div><b id="bc">0</b></div>
+    <div class="bar"><span>Linear search</span><div><i id="lb"></i></div><b id="lc">0</b></div>
+    <p id="note"></p>
+  </div>
+</section>
+
+<div class="two">
+  <section class="g"><h2>Step log</h2><ol id="log"></ol></section>
+  <section class="g"><h2>Python <button id="copy">Copy code</button></h2><pre id="code"></pre></section>
+</div>
+
+<section class="g">
+  <h2>Why bother?</h2>
+  <table id="sc"></table>
+  <p class="mute">Time O(log n), extra space O(1). The list has to be sorted first, otherwise the halving trick falls apart.</p>
+  <button id="bench">Run a real benchmark</button>
+  <p id="br"></p>
+</section>
+</main>
+
+<script src="js/app.js"></script>
+</body>
+</html>
